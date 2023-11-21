@@ -1,10 +1,9 @@
 # Boosting Semi-Supervised Object Detection in Remote Sensing Images with Active Teaching
 This is an official implementation for ["Boosting Semi-Supervised Object Detection in
-Remote Sensing Images with Active Teaching"](https://z-box.netlify.app/uploads/SSOD-AT.pdf). 
-It includes the code for SSOD-AT on RSI Object Detection task. The performance on DOTA, DIOR is reported in this repo.
+Remote Sensing Images with Active Teaching"](https://z-box.netlify.app/uploads/SSOD-AT.pdf).
 
 ## Introduction
-The overall of our **SSOD-AT**. 
+The overall framework of our **SSOD-AT**. 
 <p align="center">
 <img src="demo/img.png">
 </p>
