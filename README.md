@@ -54,10 +54,10 @@ mkdir results
 mkdir results/dota
 mkdir dataseed/dota_pick
 
-python train_net.py \
---num-gpus 2 \
---config configs/dota_coco_1024/dota_coco_1024_sup5_run1.yaml \
-OUTPUT_DIR output/dota_1/dota_1024_sup5_run1_32bs DATALOADER.RANDOM_DATA_SEED_PATH dataseed/random_dota/dota_supervision_5.0.txt
+python tools/train_net.py \
+        --num-gpus 2 \
+        --config configs/dota_coco_1024/dota_coco_1024_sup5_run1.yaml \
+        OUTPUT_DIR output/dota_1/dota_1024_sup5_run1_32bs DATALOADER.RANDOM_DATA_SEED_PATH dataseed/random_dota/dota_supervision_5.0.txt
 ```
 
 ### Step 3. Use the trained model from step 2 to get the indicator file of the dataset
@@ -68,27 +68,27 @@ python tools/inference_for_active_pick.py \
         --config configs/dota_coco_1024/dota_coco_1024_sup5_run1.yaml
 
 python tools/active_pick_evaluation.py \
-    --static-file temp/dota/static_by_random5.json \
-    --indicator-file results/dota/5random_0active
+        --static-file temp/dota/static_by_random5.json \
+        --indicator-file results/dota/5random_0active
 ```
 
 ### Step 4. Use the indictor file from step 3 to generate pick data and merge random data
 ```
 python tools/generate_pick_merge_random_data_partition.py \
-    --random-file dataseed/random_dota/dota_supervision_5.0.txt \
-    --random-percent 5.0 \
-    --indicator-file results/dota/5random_0active.txt \
-    --pick-percent 5.0 \
-    --reverse True \
-    --save-file dataseed/dota_pick/active5+random5.txt
+        --random-file dataseed/random_dota/dota_supervision_5.0.txt \
+        --random-percent 5.0 \
+        --indicator-file results/dota/5random_0active.txt \
+        --pick-percent 5.0 \
+        --reverse True \
+        --save-file dataseed/dota_pick/active5+random5.txt
 ```
 
 ### Step 5. Train a model from scratch using the 10% data partition from step 4
 ```
-python ./tools/train_net.py \
---num-gpus 2 \
---config configs/dota_coco_1024/dota_coco_1024_sup10_run1.yaml \
-SOLVER.IMG_PER_BATCH_LABEL 16 SOLVER.IMG_PER_BATCH_UNLABEL 16 OUTPUT_DIR output/dota/dota_1024_sup10_run1 DATALOADER.RANDOM_DATA_SEED_PATH dataseed/dota_pick/active5+random5.txt MODEL.WEIGHTS output/dota/dota_1024_sup5_run1_32bs/model_best.pth
+python tools/train_net.py \
+        --num-gpus 2 \
+        --config configs/dota_coco_1024/dota_coco_1024_sup10_run1.yaml \
+        SOLVER.IMG_PER_BATCH_LABEL 16 SOLVER.IMG_PER_BATCH_UNLABEL 16 OUTPUT_DIR output/dota/dota_1024_sup10_run1 DATALOADER.RANDOM_DATA_SEED_PATH dataseed/dota_pick/active5+random5.txt MODEL.WEIGHTS output/dota/dota_1024_sup5_run1_32bs/model_best.pth
 ```
 
 ### Step 6. Repeated Step 3 to Step 5 to augment labeled set from 5% to 40%
@@ -96,7 +96,7 @@ SOLVER.IMG_PER_BATCH_LABEL 16 SOLVER.IMG_PER_BATCH_UNLABEL 16 OUTPUT_DIR output/
 ## Evaluation
 Test 20% labeled DOTA for exemple
 ```
-python train_net.py \
+python tools/train_net.py \
       --eval-only \
       --num-gpus 2 \
       --config configs/dota_coco_1024/dota_coco_1024_sup20_run1.yaml \
