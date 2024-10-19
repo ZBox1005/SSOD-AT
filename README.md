@@ -1,6 +1,13 @@
-# Boosting Semi-Supervised Object Detection in Remote Sensing Images with Active Teaching
+<h1 align='center'>
+Boosting Semi-Supervised Object Detection in Remote Sensing Images with Active Teaching
+</h1>
+
+<p align='center'>
+<a href="https://arxiv.org/abs/2402.18958"><img src="https://img.shields.io/badge/arXiv-2402.18958-b31b1b.svg" alt="Paper"></a> <a href="[https://neurips.cc/](https://ieeexplore.ieee.org/document/10411936)"><img src="https://img.shields.io/badge/Pub-GRSL'24-blue" alt="Journal"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="Liscence"></a>
+</p>
+
 This is an official implementation for ["Boosting Semi-Supervised Object Detection in
-Remote Sensing Images with Active Teaching"](https://z-box.netlify.app/uploads/SSOD-AT.pdf).
+Remote Sensing Images with Active Teaching"](https://ieeexplore.ieee.org/document/10411936).
 
 ## Introduction
 The overall framework of our **SSOD-AT**. 
